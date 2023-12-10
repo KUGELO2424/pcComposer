@@ -55,12 +55,21 @@ public class AggregationBuilder {
     }
 
     public AggregationBuilder addProjectOperation() {
+
         this.aggregationOperations.add(
                 Aggregation.project()
                         .andExclude("_id")
+                        .and("motherboard").as("motherboard")
                         .and("compatibleCases").as("computerCase")
-                        .and("$$ROOT").as("motherboard")
                         .and("powerSupplies").as("powerSupply")
+        );
+        return this;
+    }
+
+    public AggregationBuilder moveRootObjectToChild(String name) {
+        this.aggregationOperations.add(
+                Aggregation.project()
+                        .and("$$ROOT").as(name)
         );
         return this;
     }

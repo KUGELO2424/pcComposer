@@ -21,8 +21,9 @@ public class ComputerSetService {
                                                        long page, long size) {
 
         Aggregation aggregation = new AggregationBuilder()
+                .moveRootObjectToChild("motherboard")
                 // AGGREGATE TABLES
-                .addLookupOperation("cases", "formFactor", "supportedMotherboardFormFactor", "compatibleCases")
+                .addLookupOperation("cases", "motherboard.formFactor", "supportedMotherboardFormFactor", "compatibleCases")
                 .addLookupOperationWithoutCondition("powerSupplies",  "powerSupplies")
                 .addUnwindOperationFor("compatibleCases")
                 .addUnwindOperationFor("powerSupplies")
@@ -36,9 +37,28 @@ public class ComputerSetService {
                 // PAGINATION
                 .sortBy("fullPrice", sortDirection)
                 .addSkipAndLimitOperation(page, size)
-//                .saveToCollection("builds")
                 .build();
 
+
+        AggregationResults<ComputerSet> result = mongoTemplate.aggregate(aggregation, "motherboards", ComputerSet.class);
+        return result.getMappedResults();
+    }
+
+    public List<ComputerSet> createCompatibleComputerSets(String collectionName) {
+
+        Aggregation aggregation = new AggregationBuilder()
+                .moveRootObjectToChild("motherboard")
+                // AGGREGATE TABLES
+                .addLookupOperation("cases", "motherboard.formFactor", "supportedMotherboardFormFactor", "compatibleCases")
+                .addLookupOperationWithoutCondition("powerSupplies",  "powerSupplies")
+                .addUnwindOperationFor("compatibleCases")
+                .addUnwindOperationFor("powerSupplies")
+                // PROJECTION
+                .addProjectOperation()
+                // ADDITIONAL FIELDS
+                .addPriceField()
+                .saveToCollection(collectionName)
+                .build();
 
         AggregationResults<ComputerSet> result = mongoTemplate.aggregate(aggregation, "motherboards", ComputerSet.class);
         return result.getMappedResults();

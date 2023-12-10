@@ -3,6 +3,7 @@ package com.example.pc_composer.service;
 import com.example.pc_composer.model.BulkImportResponse;
 import com.example.pc_composer.model.CPUCooler;
 import com.example.pc_composer.model.Case;
+import com.example.pc_composer.model.ComputerSet;
 import com.example.pc_composer.model.GraphicsCard;
 import com.example.pc_composer.model.Memory;
 import com.example.pc_composer.model.Motherboard;
@@ -17,6 +18,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.bson.Document;
 import org.springframework.data.mongodb.core.BulkOperations;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.aggregation.Aggregation;
+import org.springframework.data.mongodb.core.aggregation.AggregationResults;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
@@ -38,9 +41,11 @@ import java.util.List;
 public class DataImportService {
 
     private final MongoTemplate mongoTemplate;
+    private final ComputerSetService computerSetService;
 
-    public DataImportService(MongoTemplate mongoTemplate) {
+    public DataImportService(MongoTemplate mongoTemplate, ComputerSetService computerSetService) {
         this.mongoTemplate = mongoTemplate;
+        this.computerSetService = computerSetService;
     }
 
 
@@ -51,6 +56,10 @@ public class DataImportService {
         String collection = type.getAnnotation(org.springframework.data.mongodb.core.mapping.Document.class).collection();
 
         BulkWriteResult result = insertInto(collection, mongoDocs);
+
+//        Create computerSet after import
+        computerSetService.createCompatibleComputerSets("builds");
+
         return BulkImportResponse.builder()
                 .filename(file.getOriginalFilename())
                 .rows(lines.size())
