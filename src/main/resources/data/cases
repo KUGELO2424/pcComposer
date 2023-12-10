@@ -1,0 +1,5 @@
+{"id": 1, "name": "ATX Case", "supportedMotherboardFormFactor": "ATX", "maxGPUSize": 400, "hasRGB": true, "price": 450.0}
+{"id": 2, "name": "MicroATX Case", "supportedMotherboardFormFactor": "MicroATX", "maxGPUSize": 350, "hasRGB": false, "price": 360.0}
+{"id": 3, "name": "Mini-ITX Case", "supportedMotherboardFormFactor": "Mini-ITX", "maxGPUSize": 300, "hasRGB": true, "price": 300.0}
+{"id": 4, "name": "Full Tower Case", "supportedMotherboardFormFactor": "ATX", "maxGPUSize": 450, "hasRGB": true, "price": 450.0}
+{"id": 5, "name": "Slim Case", "supportedMotherboardFormFactor": "Mini-ITX", "maxGPUSize": 250, "hasRGB": false, "price": 250.0}

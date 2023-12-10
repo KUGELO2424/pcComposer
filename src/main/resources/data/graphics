@@ -1,0 +1,5 @@
+{"id":"11","name":"GeForce RTX 3080","chipset":"Turing","manufacturer":"NVIDIA","vram":10,"powerConsumption":320,"length":300,"price":300.0}
+{"id":"12","name":"Radeon RX 6800","chipset":"AMD RDNA","manufacturer":"NVIDIA","vram":12,"powerConsumption":300,"length":280,"price":280.0}
+{"id":"13","name":"GTX 1660 Super","chipset":"Turing","manufacturer":"NVIDIA","vram":6,"powerConsumption":200,"length":230,"price":230.0}
+{"id":"14","name":"Quadro P5000","chipset":"Pascal","manufacturer":"NVIDIA","vram":16,"powerConsumption":180,"length":267,"price":267.0}
+{"id":"15","name":"RX 5600 XT","chipset":"RDNA","manufacturer":"AMD","vram":6,"powerConsumption":250,"length":230,"price":230.0}

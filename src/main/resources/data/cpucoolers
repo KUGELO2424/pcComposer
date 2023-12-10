@@ -1,0 +1,5 @@
+{"id":"6","name":"Air Cooler","socketCompatibility":"LGA1151","fanSize":120,"liquidCooling":false,"price":120}
+{"id":"7","name":"Liquid Cooler","socketCompatibility":"LGA1200","fanSize":240,"liquidCooling":true,"price":240}
+{"id":"8","name":"Low-Profile Cooler","socketCompatibility":"AM4","fanSize":90,"liquidCooling":false,"price":90}
+{"id":"9","name":"Dual Tower Cooler","socketCompatibility":"TR4","fanSize":140,"liquidCooling":true,"price":140}
+{"id":"10","name":"Silent Cooler","socketCompatibility":"LGA2066","fanSize":140,"liquidCooling":false,"price":140}

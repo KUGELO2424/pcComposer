@@ -1,0 +1,5 @@
+{"id":"36","name":"1TB SSD","manufacturer":"Samsung","capacity":1000,"type":"SSD","rotationSpeed":0,"connectionType":"SATA","price":150.0}
+{"id":"37","name":"2TB HDD","manufacturer":"Seagate","capacity":2000,"type":"HDD","rotationSpeed":7200,"connectionType":"SATA","price":80.0}
+{"id":"38","name":"500GB NVMe SSD","manufacturer":"Western Digital","capacity":500,"type":"SSD","rotationSpeed":0,"connectionType":"M.2","price":100.0}
+{"id":"39","name":"4TB External HDD","manufacturer":"Seagate","capacity":4000,"type":"HDD","rotationSpeed":5400,"connectionType":"SATA","price":120.0}
+{"id":"40","name":"256GB M.2 SSD","manufacturer":"Crucial","capacity":256,"type":"SSD","rotationSpeed":0,"connectionType":"M.2","price":100.0}

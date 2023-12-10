@@ -1,0 +1,5 @@
+{"id":"16","name":"16GB RAM","manufacturer":"Corsair","capacity":16,"type":"DDR4","speed":3200,"formFactor":"DIMM","price":160.0}
+{"id":"17","name":"32GB RAM","manufacturer":"G.SKILL","capacity":32,"type":"DDR4","speed":3600,"formFactor":"DIMM","price":320.0}
+{"id":"18","name":"8GB RAM","manufacturer":"Kingston","capacity":8,"type":"DDR4","speed":2666,"formFactor":"DIMM","price":80.0}
+{"id":"19","name":"64GB RAM","manufacturer":"Crucial","capacity":64,"type":"DDR4","speed":4000,"formFactor":"DIMM","price":640.0}
+{"id":"20","name":"128GB RAM","manufacturer":"Corsair","capacity":128,"type":"DDR4","speed":4800,"formFactor":"DIMM","price":1280.0}

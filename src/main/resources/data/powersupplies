@@ -1,0 +1,5 @@
+{"id":"26","name":"550W PSU","wattage":550,"modular":false,"efficiencyRating":"80 PLUS Bronze","price":50.0}
+{"id":"27","name":"850W PSU","wattage":850,"modular":true,"efficiencyRating":"80 PLUS Gold","price":120.0}
+{"id":"28","name":"1200W PSU","wattage":1200,"modular":true,"efficiencyRating":"80 PLUS Platinum","price":200.0}
+{"id":"29","name":"500W PSU","wattage":500,"modular":false,"efficiencyRating":"80 PLUS","price":70.0}
+{"id":"30","name":"1000W PSU","wattage":1000,"modular":true,"efficiencyRating":"80 PLUS Titanium","price":250.0}
