@@ -61,6 +61,7 @@ public class AggregationBuilder {
                         .andExclude("_id")
                         .and("motherboard").as("motherboard")
                         .and("compatibleCases").as("computerCase")
+                        .and("compatibleProcessors").as("cpu")
                         .and("powerSupplies").as("powerSupply")
         );
         return this;
@@ -89,10 +90,28 @@ public class AggregationBuilder {
         return this;
     }
 
-    public AggregationBuilder addMatchOperation(String field, String motherboardFormFactor) {
-        if (StringUtils.hasText(motherboardFormFactor)) {
+    public AggregationBuilder addObjectMatchOperation(String field, Object value) {
+        if (value != null) {
             this.aggregationOperations.add(
-                    Aggregation.match(Criteria.where(field).is(motherboardFormFactor))
+                    Aggregation.match(Criteria.where(field).is(value))
+            );
+        }
+        return this;
+    }
+
+    public AggregationBuilder addExactMatchOperation(String field, String match) {
+        if (StringUtils.hasText(match)) {
+            this.aggregationOperations.add(
+                    Aggregation.match(Criteria.where(field).regex("^" + match + "$", "i"))
+            );
+        }
+        return this;
+    }
+
+    public AggregationBuilder addPartlyMatchOperation(String field, String match) {
+        if (StringUtils.hasText(match)) {
+            this.aggregationOperations.add(
+                    Aggregation.match(Criteria.where(field).regex(match, "i"))
             );
         }
         return this;

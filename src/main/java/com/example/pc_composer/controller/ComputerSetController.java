@@ -1,6 +1,7 @@
 package com.example.pc_composer.controller;
 
 import com.example.pc_composer.model.ComputerSet;
+import com.example.pc_composer.model.ComputerSetsResponse;
 import com.example.pc_composer.service.ComputerSetService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -20,13 +21,21 @@ public class ComputerSetController {
     private final ComputerSetService computerSetService;
 
     @GetMapping("/sets")
-    public ResponseEntity<List<ComputerSet>> getCompatibleComputerSets(@RequestParam(value = "motherboardFormFactor", required = false) String motherboardFormFactor,
+    public ResponseEntity<ComputerSetsResponse> getCompatibleComputerSets(@RequestParam(value = "motherboardFormFactor", required = false) String motherboardFormFactor,
+                                                                       @RequestParam(value = "cpuManufacturer", required = false) String cpuManufacturer,
+                                                                       @RequestParam(value = "cpuModel", required = false) String cpuModel,
+                                                                       @RequestParam(value = "cpuCores", required = false) Integer cpuCores,
                                                                        @RequestParam(value = "minPrice", required = false, defaultValue = "0") double minPrice,
                                                                        @RequestParam(value = "maxPrice", required = false, defaultValue = "99999999999") double maxPrice,
                                                                        @RequestParam(value = "sortDirection", required = false, defaultValue = "DESC") String sortDirection,
                                                                        @RequestParam(value = "page", required = false, defaultValue = "0") long page,
                                                                        @RequestParam(value = "pageSize", required = false, defaultValue = "20") long size) {
-        List<ComputerSet> computerSets = computerSetService.getCompatibleComputerSets(motherboardFormFactor, minPrice, maxPrice, sortDirection, page, size);
-        return new ResponseEntity<>(computerSets, HttpStatus.OK);
+        List<ComputerSet> computerSets = computerSetService.getCompatibleComputerSets(motherboardFormFactor, cpuManufacturer,
+                cpuModel, cpuCores, minPrice, maxPrice, sortDirection, page, size);
+        ComputerSetsResponse response = ComputerSetsResponse.builder()
+                .sets(computerSets)
+                .size(computerSets.size())
+                .build();
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }

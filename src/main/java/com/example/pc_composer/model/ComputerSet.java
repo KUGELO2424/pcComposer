@@ -16,4 +16,5 @@ public class ComputerSet {
     private Case computerCase;
     private Motherboard motherboard;
     private PowerSupply powerSupply;
+    private Processor cpu;
 }

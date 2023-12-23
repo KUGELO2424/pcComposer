@@ -15,7 +15,8 @@ public class ComputerSetService {
 
     private final MongoTemplate mongoTemplate;
 
-    public List<ComputerSet> getCompatibleComputerSets(String motherboardFormFactor,
+    public List<ComputerSet> getCompatibleComputerSets(String motherboardFormFactor, String cpuManufacturer, String cpuModel,
+                                                       Integer cpuCores,
                                                        double minPrice, double maxPrice,
                                                        String sortDirection,
                                                        long page, long size) {
@@ -24,15 +25,20 @@ public class ComputerSetService {
                 .moveRootObjectToChild("motherboard")
                 // AGGREGATE TABLES
                 .addLookupOperation("cases", "motherboard.formFactor", "supportedMotherboardFormFactor", "compatibleCases")
+                .addLookupOperation("processors", "motherboard.socket", "socket", "compatibleProcessors")
                 .addLookupOperationWithoutCondition("powerSupplies",  "powerSupplies")
                 .addUnwindOperationFor("compatibleCases")
+                .addUnwindOperationFor("compatibleProcessors")
                 .addUnwindOperationFor("powerSupplies")
                 // PROJECTION
                 .addProjectOperation()
                 // ADDITIONAL FIELDS
                 .addPriceField()
                 // FILTERING
-                .addMatchOperation("motherboard.formFactor", motherboardFormFactor)
+                .addExactMatchOperation("motherboard.formFactor", motherboardFormFactor)
+                .addExactMatchOperation("cpu.manufacturer", cpuManufacturer)
+                .addPartlyMatchOperation("cpu.name", cpuModel)
+                .addObjectMatchOperation("cpu.cores", cpuCores)
                 .addMatchOperationValueBetween("fullPrice", minPrice, maxPrice)
                 // PAGINATION
                 .sortBy("fullPrice", sortDirection)
@@ -50,8 +56,10 @@ public class ComputerSetService {
                 .moveRootObjectToChild("motherboard")
                 // AGGREGATE TABLES
                 .addLookupOperation("cases", "motherboard.formFactor", "supportedMotherboardFormFactor", "compatibleCases")
+                .addLookupOperation("processors", "motherboard.socket", "socket", "compatibleProcessors")
                 .addLookupOperationWithoutCondition("powerSupplies",  "powerSupplies")
                 .addUnwindOperationFor("compatibleCases")
+                .addUnwindOperationFor("compatibleProcessors")
                 .addUnwindOperationFor("powerSupplies")
                 // PROJECTION
                 .addProjectOperation()
