@@ -1,4 +1,4 @@
-package com.example.pc_composer.model;
+package com.example.pc_composer.model.pc_parts;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

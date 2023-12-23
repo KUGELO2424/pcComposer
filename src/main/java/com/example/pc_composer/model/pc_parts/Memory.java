@@ -1,4 +1,4 @@
-package com.example.pc_composer.model;
+package com.example.pc_composer.model.pc_parts;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,15 +9,16 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Document(collection = "powerSupplies")
-public class PowerSupply {
+@Document(collection = "ram")
+public class Memory {
 
     @Id
     private String id;
     private String name;
-    private int wattage; // Power in watts
-    private boolean modular;
-    private String efficiencyRating; // (80 PLUS, 80 PLUS Bronze, itp.)
+    private String manufacturer; // Corsair, G.SKILL
+    private int capacity; // GB
+    private String type; // DDR4, DDR3
+    private int speed; // MHz
+    private String formFactor; // DIMM, SO-DIMM
     private double price;
-
 }

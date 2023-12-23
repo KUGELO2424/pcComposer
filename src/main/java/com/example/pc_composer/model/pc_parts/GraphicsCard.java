@@ -1,4 +1,4 @@
-package com.example.pc_composer.model;
+package com.example.pc_composer.model.pc_parts;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,14 +9,16 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Document(collection = "cpuCoolers")
-public class CPUCooler {
+@Document(collection = "graphicsCards")
+public class GraphicsCard {
 
     @Id
     private String id;
     private String name;
-    private String socketCompatibility;
-    private int fanSize; // mm
-    private boolean liquidCooling;
+    private String chipset;
+    private String manufacturer;
+    private int vram;
+    private int powerConsumption; // in watts
+    private int length; // mm
     private double price;
 }

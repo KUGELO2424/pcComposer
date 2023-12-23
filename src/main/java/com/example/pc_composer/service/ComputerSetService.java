@@ -1,6 +1,7 @@
 package com.example.pc_composer.service;
 
 import com.example.pc_composer.model.ComputerSet;
+import com.example.pc_composer.model.ComputerSetFilters;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.aggregation.Aggregation;
@@ -15,11 +16,7 @@ public class ComputerSetService {
 
     private final MongoTemplate mongoTemplate;
 
-    public List<ComputerSet> getCompatibleComputerSets(String motherboardFormFactor, String cpuManufacturer, String cpuModel,
-                                                       Integer cpuCores,
-                                                       double minPrice, double maxPrice,
-                                                       String sortDirection,
-                                                       long page, long size) {
+    public List<ComputerSet> getCompatibleComputerSets(ComputerSetFilters filters) {
 
         Aggregation aggregation = new AggregationBuilder()
                 .moveRootObjectToChild("motherboard")
@@ -35,14 +32,14 @@ public class ComputerSetService {
                 // ADDITIONAL FIELDS
                 .addPriceField()
                 // FILTERING
-                .addExactMatchOperation("motherboard.formFactor", motherboardFormFactor)
-                .addExactMatchOperation("cpu.manufacturer", cpuManufacturer)
-                .addPartlyMatchOperation("cpu.name", cpuModel)
-                .addObjectMatchOperation("cpu.cores", cpuCores)
-                .addMatchOperationValueBetween("fullPrice", minPrice, maxPrice)
+                .addExactMatchOperation("motherboard.formFactor", filters.getMotherboardFormFactor())
+                .addExactMatchOperation("cpu.manufacturer", filters.getCpuManufacturer())
+                .addPartlyMatchOperation("cpu.name", filters.getCpuModel())
+                .addObjectMatchOperation("cpu.cores", filters.getCpuCores())
+                .addMatchOperationValueBetween("fullPrice", filters.getMinPrice(), filters.getMaxPrice())
                 // PAGINATION
-                .sortBy("fullPrice", sortDirection)
-                .addSkipAndLimitOperation(page, size)
+                .sortBy("fullPrice", filters.getSortDirection())
+                .addSkipAndLimitOperation(filters.getPage(), filters.getPageSize())
                 .build();
 
 

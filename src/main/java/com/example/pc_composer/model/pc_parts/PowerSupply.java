@@ -1,4 +1,4 @@
-package com.example.pc_composer.model;
+package com.example.pc_composer.model.pc_parts;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,15 +9,15 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Document(collection = "cases")
-public class Case {
+@Document(collection = "powerSupplies")
+public class PowerSupply {
 
     @Id
     private String id;
     private String name;
-    private String supportedMotherboardFormFactor; // ATX, MicroATX, Mini-ITX, etc.
-    private int maxGPUSize; // max length of gpu in mm
-    private boolean hasRGB;
+    private int wattage; // Power in watts
+    private boolean modular;
+    private String efficiencyRating; // (80 PLUS, 80 PLUS Bronze, itp.)
     private double price;
 
 }

@@ -1,4 +1,4 @@
-package com.example.pc_composer.model;
+package com.example.pc_composer.model.pc_parts;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,16 +9,16 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Document(collection = "ram")
-public class Memory {
+@Document(collection = "storage")
+public class Storage {
 
     @Id
     private String id;
     private String name;
-    private String manufacturer; // Corsair, G.SKILL
+    private String manufacturer; // Samsung, Seagate
     private int capacity; // GB
-    private String type; // DDR4, DDR3
-    private int speed; // MHz
-    private String formFactor; // DIMM, SO-DIMM
+    private String type; // HDD, SSD
+    private int rotationSpeed; // Rotation speed for HDDs in revolutions per minute (RPM)
+    private String connectionType; // SATA, m2
     private double price;
 }

@@ -1,4 +1,4 @@
-package com.example.pc_composer.model;
+package com.example.pc_composer.model.pc_parts;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,17 +9,15 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Document(collection = "processors")
-public class Processor {
+@Document(collection = "cases")
+public class Case {
 
     @Id
     private String id;
     private String name;
-    private String manufacturer; // eg. Intel, AMD
-    private String socket;
-    private int cores;
-    private int threads;
-    private double baseClock; // GHz
-    private double maxClock; // GHz
+    private String supportedMotherboardFormFactor; // ATX, MicroATX, Mini-ITX, etc.
+    private int maxGPUSize; // max length of gpu in mm
+    private boolean hasRGB;
     private double price;
+
 }

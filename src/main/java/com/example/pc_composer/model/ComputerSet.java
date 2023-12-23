@@ -1,5 +1,9 @@
 package com.example.pc_composer.model;
 
+import com.example.pc_composer.model.pc_parts.Case;
+import com.example.pc_composer.model.pc_parts.Motherboard;
+import com.example.pc_composer.model.pc_parts.PowerSupply;
+import com.example.pc_composer.model.pc_parts.Processor;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.data.annotation.Id;

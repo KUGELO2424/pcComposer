@@ -1,6 +1,7 @@
 package com.example.pc_composer.controller;
 
 import com.example.pc_composer.model.ComputerSet;
+import com.example.pc_composer.model.ComputerSetFilters;
 import com.example.pc_composer.model.ComputerSetsResponse;
 import com.example.pc_composer.service.ComputerSetService;
 import lombok.RequiredArgsConstructor;
@@ -30,8 +31,18 @@ public class ComputerSetController {
                                                                        @RequestParam(value = "sortDirection", required = false, defaultValue = "DESC") String sortDirection,
                                                                        @RequestParam(value = "page", required = false, defaultValue = "0") long page,
                                                                        @RequestParam(value = "pageSize", required = false, defaultValue = "20") long size) {
-        List<ComputerSet> computerSets = computerSetService.getCompatibleComputerSets(motherboardFormFactor, cpuManufacturer,
-                cpuModel, cpuCores, minPrice, maxPrice, sortDirection, page, size);
+        ComputerSetFilters filters = ComputerSetFilters.builder()
+                .motherboardFormFactor(motherboardFormFactor)
+                .cpuManufacturer(cpuManufacturer)
+                .cpuModel(cpuModel)
+                .cpuCores(cpuCores)
+                .minPrice(minPrice)
+                .maxPrice(maxPrice)
+                .sortDirection(sortDirection)
+                .page(page)
+                .pageSize(size)
+                .build();
+        List<ComputerSet> computerSets = computerSetService.getCompatibleComputerSets(filters);
         ComputerSetsResponse response = ComputerSetsResponse.builder()
                 .sets(computerSets)
                 .size(computerSets.size())
